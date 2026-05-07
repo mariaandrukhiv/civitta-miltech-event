@@ -63,6 +63,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      justify-content: space-between;
     }
 
     /* ── Header ────────────────────────────────────────────────── */
@@ -283,6 +284,14 @@
       line-height: 1.4;
     }
 
+    /* ── Subtle links (speaker names, location) ────────────────── */
+
+    .subtle-link {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
     /* ── CTA ───────────────────────────────────────────────────── */
 
     .cta {
@@ -337,7 +346,9 @@
 
       <!-- Header: logo + tag -->
       <div class="header">
-        <img class="logo" src="uploads/pasted-1777972902090-0.png" alt="Civitta Defence">
+        <a href="https://civitta.com/" target="_blank" rel="noopener noreferrer">
+          <img class="logo" src="uploads/pasted-1777972902090-0.png" alt="Civitta Defence">
+        </a>
         <div class="header-divider"></div>
         <span class="tag">MilTech Funding · Kyiv 2026</span>
       </div>
@@ -387,7 +398,7 @@
             <div class="speaker">
               <img class="speaker-photo" src="speakers/speaker3.png" alt="Iurii-Volodymyr Blavt">
               <div>
-                <p class="speaker-name">Iurii-Volodymyr Blavt</p>
+                <p class="speaker-name"><a class="subtle-link" href="https://civitta.com/team/iurii-volodymyr-blavt/" target="_blank" rel="noopener noreferrer">Iurii-Volodymyr Blavt</a></p>
                 <p class="speaker-role">Partner</p>
                 <p class="speaker-bio">EU funding attraction expert for innovative companies</p>
               </div>
@@ -396,7 +407,7 @@
             <div class="speaker">
               <img class="speaker-photo" src="speakers/speaker1.png" alt="Kyrylo Kryvolap">
               <div>
-                <p class="speaker-name">Kyrylo Kryvolap</p>
+                <p class="speaker-name"><a class="subtle-link" href="https://civitta.com/team/kirill-krivolap/" target="_blank" rel="noopener noreferrer">Kyrylo Kryvolap</a></p>
                 <p class="speaker-role">Managing Partner</p>
                 <p class="speaker-bio">20+ years leading 50+ major policy &amp; corporate projects, including in defense</p>
               </div>
@@ -405,7 +416,7 @@
             <div class="speaker">
               <img class="speaker-photo" src="speakers/speaker2.png" alt="Greg Fishman">
               <div>
-                <p class="speaker-name">Greg Fishman</p>
+                <p class="speaker-name"><a class="subtle-link" href="https://civitta.com/team/greg-fishman/" target="_blank" rel="noopener noreferrer">Greg Fishman</a></p>
                 <p class="speaker-role">Senior Advisor</p>
                 <p class="speaker-bio">Private sector defense &amp; reconstruction lead, partnering with primes from Europe &amp; the US</p>
               </div>
@@ -426,12 +437,12 @@
           </div>
           <div>
             <p class="detail-label">Location</p>
-            <p class="detail-value">Osvitoria Hub<br>Kniaziv Ostrozkykh St, 2<br>Kyiv, 01010</p>
+            <p class="detail-value"><a class="subtle-link" href="https://hub.osvitoria.org/" target="_blank" rel="noopener noreferrer">Osvitoria Hub<br>Kniaziv Ostrozkykh St, 2<br>Kyiv, 01010</a></p>
           </div>
         </div>
 
         <!-- CTA -->
-        <a class="cta" href="https://forms.gle/h2uu4uT94Cr2SuNB6">Register Now &rarr;</a>
+        <a class="cta" href="https://forms.gle/h2uu4uT94Cr2SuNB6" target="_blank" rel="noopener noreferrer">Register Now &rarr;</a>
 
       </div>
 
