@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civitta — Funding Event Kyiv</title>
+<meta name="ext-resource-dependency" content="uploads/Civitta graphic elements PNG-01.png" data-resource-id="bgLines" />
+<meta name="ext-resource-dependency" content="uploads/pasted-1777972902090-0.png" data-resource-id="civittaLogo" />
+<meta name="ext-resource-dependency" content="speakers/speaker3.png" data-resource-id="speaker3" />
+<meta name="ext-resource-dependency" content="speakers/speaker1.png" data-resource-id="speaker1" />
+<meta name="ext-resource-dependency" content="speakers/speaker2.png" data-resource-id="speaker2" />
+
+<template id="__bundler_thumbnail" data-bg-color="#1d1d1d">
+  <svg viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="400" height="600" fill="#1d1d1d"/>
+    <!-- Flowing lines suggestion -->
+    <path d="M320,0 Q360,150 380,300 Q360,450 320,600" stroke="#ebff40" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M340,0 Q390,150 400,300 Q390,450 340,600" stroke="#ebff40" stroke-width="1" fill="none" opacity="0.3"/>
+    <path d="M300,0 Q330,150 360,300 Q330,450 300,600" stroke="#ebff40" stroke-width="1" fill="none" opacity="0.3"/>
+    <!-- Logo area -->
+    <rect x="40" y="48" width="90" height="12" rx="2" fill="#ebff40" opacity="0.9"/>
+    <!-- Accent divider -->
+    <rect x="40" y="200" width="40" height="2" fill="#ebff40"/>
+    <!-- Headline lines -->
+    <rect x="40" y="120" width="220" height="14" rx="2" fill="white" opacity="0.9"/>
+    <rect x="40" y="142" width="200" height="14" rx="2" fill="white" opacity="0.9"/>
+    <rect x="40" y="164" width="160" height="14" rx="2" fill="#ebff40" opacity="0.9"/>
+    <!-- Body text lines -->
+    <rect x="40" y="220" width="180" height="8" rx="1" fill="white" opacity="0.4"/>
+    <rect x="40" y="236" width="200" height="8" rx="1" fill="white" opacity="0.4"/>
+    <rect x="40" y="252" width="160" height="8" rx="1" fill="white" opacity="0.4"/>
+    <!-- CTA button -->
+    <rect x="40" y="480" width="130" height="36" rx="2" fill="#ebff40"/>
+    <rect x="52" y="493" width="80" height="10" rx="1" fill="#1d1d1d" opacity="0.8"/>
+  </svg>
+</template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* Power Grotesk — served from project fonts/ */
+  @font-face {
+    font-family: 'Power Grotesk';
+    src: url('fonts/PowerGrotesk-Regular.otf') format('opentype');
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+  }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 100%; height: 100%;
+    background: #111;
+    font-family: 'Inter', sans-serif;
+  }
+  #root { width: 100%; min-height: 100vh; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+
+
+
+
+
+
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accentColor": "#ebff40",
+  "bgColor": "#1d1d1d",
+  "headlineSize": 72,
+  "variant": "direct",
+  "showPattern": true,
+  "ctaLabel": "Register Now",
+  "ctaUrl": "https:\/\/forms.gle\/h2uu4uT94Cr2SuNB6"
+}/*EDITMODE-END*/;
+
+const { useState, useEffect, useRef } = React;
+
+// ── Civitta flowing-lines background ────────────────────────────────────────
+function ArcPattern({ color, opacity }) {
+  return (
+    <img
+      src={window.__resources.bgLines}
+      aria-hidden="true"
+      style={{
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        height: '100%',
+        width: 'auto',
+        pointerEvents: 'none',
+        opacity: opacity * 5.5,
+        filter: 'invert(1)',
+        mixBlendMode: 'screen',
+        userSelect: 'none'
+      }} />);
+
+
+}
+
+// ── Civitta wordmark ─────────────────────────────────────────────────────────
+function CivittaLogo({ color }) {
+  return (
+    <svg viewBox="0 0 120 22" fill="none" style={{ height: 18 }}>
+      <text x="0" y="18" fontFamily="'Inter', sans-serif" fontWeight="700"
+      fontSize="20" letterSpacing="0.5" fill={color}>civitta</text>
+    </svg>);
+
+}
+
+// ── Tag pill ─────────────────────────────────────────────────────────────────
+function Tag({ children, accent }) {
+  return (
+    <span style={{
+      display: 'inline-block',
+      border: `1.5px solid ${accent}`,
+      color: accent,
+      fontFamily: "'Inter', sans-serif",
+      fontSize: 11,
+      fontWeight: 600,
+      letterSpacing: '0.12em',
+      textTransform: 'uppercase',
+      padding: '4px 12px',
+      borderRadius: 2
+    }}>{children}</span>);
+
+}
+
+// ── Main invitation card ─────────────────────────────────────────────────────
+function Invitation({ tweaks, setTweak }) {
+  const { accentColor, bgColor, headlineSize, variant, showPattern, ctaLabel, ctaUrl } = tweaks;
+
+  const isBold = variant === 'bold';
+
+  const containerStyle = {
+    position: 'relative',
+    background: bgColor,
+    minHeight: '100vh',
+    display: 'flex',
+    alignItems: 'stretch',
+    overflow: 'hidden'
+  };
+
+  const contentStyle = {
+    position: 'relative',
+    zIndex: 2,
+    maxWidth: 860,
+    width: '100%',
+    margin: '0 auto',
+    padding: 'clamp(48px, 8vw, 96px) clamp(32px, 6vw, 80px)',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 0,
+    justifyContent: 'space-between',
+    minHeight: '100vh'
+  };
+
+  return (
+    <div style={containerStyle}>
+      {showPattern && <ArcPattern color={accentColor} opacity={0.18} />}
+
+      {/* Dark overlay gradient left side */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 1,
+        background: `linear-gradient(105deg, ${bgColor} 50%, transparent 100%)`,
+        pointerEvents: 'none'
+      }} />
+
+      <div style={contentStyle}>
+
+        {/* Top: Logo + tag */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 24, marginBottom: 80 }}>
+          <img
+            src={window.__resources.civittaLogo}
+            alt="Civitta Defence"
+            style={{ display: 'block', height: 56, width: 'auto' }} />
+          
+          <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.2)' }} />
+          <Tag accent={accentColor}>MilTech Funding · Kyiv 2026</Tag>
+        </div>
+
+        {/* Headline */}
+        <div style={{ flex: 1 }}>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 'clamp(13px, 1.5vw, 16px)',
+            fontWeight: 500,
+            color: 'rgba(255,255,255,0.5)',
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            marginBottom: 28
+          }}>CIVITTA DEFENCE PRESENTS</p>
+
+          {isBold ?
+          <h1 style={{
+            fontFamily: "'Power Grotesk', 'Space Grotesk', Helvetica, sans-serif",
+            fontSize: `clamp(42px, ${headlineSize * 0.06}vw, ${headlineSize}px)`,
+            fontWeight: 700,
+            color: '#fff',
+            lineHeight: 1.05,
+            letterSpacing: '-0.02em',
+            marginBottom: 48,
+            maxWidth: 700,
+            textWrap: 'pretty'
+          }}>
+              Do Ukrainian<br />
+              MilTech companies <span style={{ color: accentColor }}>unlock</span><br />
+              their funding<br />
+              potential?
+            </h1> :
+
+          <h1 style={{
+            fontFamily: "'Power Grotesk', 'Space Grotesk', Helvetica, sans-serif",
+            fontSize: `clamp(36px, ${headlineSize * 0.055}vw, ${headlineSize * 0.9}px)`,
+            fontWeight: 400,
+            color: '#fff',
+            lineHeight: 1.1,
+            letterSpacing: '-0.01em',
+            marginBottom: 48,
+            maxWidth: 680,
+            textWrap: 'pretty'
+          }}>
+              <br />
+              Ukrainian Miltech: it's time to <em style={{ color: accentColor, fontStyle: 'normal', fontWeight: 700 }}>access the funding</em><br />
+              that powers your mission.
+            </h1>
+          }
+
+          {/* Divider */}
+          <div style={{ width: 48, height: 2, background: accentColor, marginBottom: 40 }} />
+
+          {/* Body copy */}
+          <p style={{
+            color: 'rgba(255,255,255,0.72)',
+            fontSize: 'clamp(15px, 1.6vw, 18px)',
+            lineHeight: 1.7,
+            maxWidth: 520,
+            marginBottom: 56,
+            fontWeight: 400,
+            textWrap: 'pretty',
+            whiteSpace: 'pre-line'
+          }}>
+            Join us for a focused half-day to learn about <span style={{ color: '#fff', fontWeight: 600 }}>EDIP</span>, Ukrainian funding instruments, and the <span style={{ color: '#fff', fontWeight: 600 }}>Bridge to Ukraine</span> programme –{"\n"} plus secure 1:1 meetings with Civitta's funding experts.
+          </p>
+
+          {/* Funding track record */}
+          <div style={{
+            border: `1px solid ${accentColor}`,
+            borderLeft: `3px solid ${accentColor}`,
+            background: 'rgba(235, 255, 64, 0.04)',
+            padding: '28px 32px',
+            maxWidth: 560,
+            marginBottom: 56,
+            borderRadius: 2
+          }}>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              color: accentColor,
+              marginBottom: 16
+            }}>Civitta’s track record in defence funding</p>
+
+            <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', marginBottom: 16 }}>
+              <div>
+                <p style={{
+                  fontFamily: "'Power Grotesk', 'Inter', sans-serif",
+                  fontSize: 'clamp(28px, 3.2vw, 36px)',
+                  fontWeight: 700,
+                  color: '#fff',
+                  lineHeight: 1,
+                  marginBottom: 4
+                }}>€2.4M</p>
+                <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', fontWeight: 500 }}>EDF grant secured (MICROPOL)</p>
+              </div>
+              <div>
+                <p style={{
+                  fontFamily: "'Power Grotesk', 'Inter', sans-serif",
+                  fontSize: 'clamp(28px, 3.2vw, 36px)',
+                  fontWeight: 700,
+                  color: '#fff',
+                  lineHeight: 1,
+                  marginBottom: 4
+                }}>€3.3M</p>
+                <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', fontWeight: 500 }}>Total project budget mobilised</p>
+              </div>
+            </div>
+
+            <p style={{
+              fontSize: 13,
+              lineHeight: 1.55,
+              color: 'rgba(255,255,255,0.65)',
+              fontWeight: 400
+            }}>
+              As an active <span style={{ color: '#fff', fontWeight: 600 }}>European Defence Fund</span> winner and consortium partner, Civitta has helped Ukrainian and European defence-tech companies unlock non-dilutive capital and connect with NATO-aligned procurement pathways.
+            </p>
+          </div>
+
+          {/* Featured speakers */}
+          <div style={{ marginBottom: 56, maxWidth: 640 }}>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              color: accentColor,
+              marginBottom: 24
+            }}>Featured speakers</p>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))',
+              gap: 20
+            }}>
+              {[
+              { img: window.__resources.speaker3, name: 'Iurii-Volodymyr Blavt', role: 'Partner', org: '', bio: 'EU funding attraction expert for innovative companies' },
+              { img: window.__resources.speaker1, name: 'Kyrylo Kryvolap', role: 'Managing Partner', org: '', bio: '20+ years leading 50+ major policy & corporate projects, including in defense' },
+              { img: window.__resources.speaker2, name: 'Greg Fishman', role: 'Senior Advisor', org: '', bio: 'Private sector defense & reconstruction lead, partnering with primes from Europe & the US' }].
+              map((s) =>
+              <div key={s.name} style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 12
+              }}>
+                  <img src={s.img} alt={s.name} style={{
+                  width: 72, height: 72, borderRadius: '50%',
+                  objectFit: 'cover',
+                  border: `2px solid ${accentColor}`
+                }} />
+                  <div>
+                    <p style={{
+                    fontFamily: "'Inter', sans-serif",
+                    color: '#fff',
+                    fontWeight: 600,
+                    fontSize: 14,
+                    lineHeight: 1.25,
+                    marginBottom: 2
+                  }}>{s.name}</p>
+                    <p style={{
+                    fontFamily: "'Inter', sans-serif",
+                    color: accentColor,
+                    fontWeight: 500,
+                    fontSize: 11.5,
+                    lineHeight: 1.3,
+                    marginBottom: 8
+                  }}>{s.role}{s.org ? ` · ${s.org}` : ''}</p>
+                    <p style={{
+                    fontFamily: "'Inter', sans-serif",
+                    color: 'rgba(255,255,255,0.55)',
+                    fontWeight: 400,
+                    fontSize: 12,
+                    lineHeight: 1.45
+                  }}>{s.bio}</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Event details grid */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
+            gap: '24px 40px',
+            maxWidth: 560,
+            marginBottom: 64
+          }}>
+            {[
+            { label: 'Date', value: 'May 18, 2026' },
+            { label: 'Time', value: '10:00 – 13:00' },
+            { label: 'Location', value: 'Osvitoria Hub\nKniaziv Ostrozkykh St, 2, Kyiv, 01010' }].
+            map(({ label, value }) =>
+            <div key={label}>
+                <p style={{
+                fontSize: 11,
+                fontWeight: 600,
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: accentColor,
+                marginBottom: 6
+              }}>{label}</p>
+                <p style={{
+                fontSize: 'clamp(14px, 1.4vw, 16px)',
+                color: '#fff',
+                fontWeight: 500,
+                lineHeight: 1.3, width: "200px",
+                whiteSpace: 'pre-line'
+              }}>{value}</p>
+              </div>
+            )}
+          </div>
+
+          {/* CTA */}
+          <a
+            href={ctaUrl}
+            style={{
+              display: 'inline-block',
+              background: accentColor,
+              color: bgColor,
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 700,
+              fontSize: 15,
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
+              textDecoration: 'none',
+              padding: '16px 40px',
+              borderRadius: 2,
+              transition: 'opacity 0.2s'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.85'}
+            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}>
+            
+            {ctaLabel} →
+          </a>
+        </div>
+
+        {/* Footer */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: 16,
+          marginTop: 80,
+          paddingTop: 32,
+          borderTop: '1px solid rgba(255,255,255,0.1)'
+        }}>
+          <p style={{
+            fontSize: 13,
+            color: 'rgba(255,255,255,0.35)',
+            fontWeight: 400,
+            letterSpacing: '0.02em'
+          }}>
+            Contact: <span style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'underline', cursor: 'pointer' }}>maria.andrukhiv@civitta.com</span>
+          </p>
+          <p style={{
+            fontSize: 11,
+            color: 'rgba(255,255,255,0.25)',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase'
+          }}></p>
+        </div>
+
+      </div>
+    </div>);
+
+}
+
+// ── App root ─────────────────────────────────────────────────────────────────
+function App() {
+  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+  return (
+    <>
+      <Invitation tweaks={tweaks} setTweak={setTweak} />
+      <TweaksPanel title="Tweaks">
+        <TweakSection label="Colors">
+          <TweakColor id="accentColor" label="Accent" value={tweaks.accentColor} onChange={(v) => setTweak('accentColor', v)} />
+          <TweakColor id="bgColor" label="Background" value={tweaks.bgColor} onChange={(v) => setTweak('bgColor', v)} />
+        </TweakSection>
+        <TweakSection label="Headline">
+          <TweakSlider id="headlineSize" label="Size" value={tweaks.headlineSize} min={48} max={96} step={4} onChange={(v) => setTweak('headlineSize', v)} />
+          <TweakRadio id="variant" label="Style" value={tweaks.variant}
+          options={[{ value: 'bold', label: 'Bold Q' }, { value: 'direct', label: 'Direct' }]}
+          onChange={(v) => setTweak('variant', v)} />
+        </TweakSection>
+        <TweakSection label="Layout">
+          <TweakToggle id="showPattern" label="Arc pattern" value={tweaks.showPattern} onChange={(v) => setTweak('showPattern', v)} />
+        </TweakSection>
+        <TweakSection label="CTA">
+          <TweakText id="ctaLabel" label="Button text" value={tweaks.ctaLabel} onChange={(v) => setTweak('ctaLabel', v)} />
+          <TweakText id="ctaUrl" label="Button URL" value={tweaks.ctaUrl} onChange={(v) => setTweak('ctaUrl', v)} />
+        </TweakSection>
+      </TweaksPanel>
+    </>);
+
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
