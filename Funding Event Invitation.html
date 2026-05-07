@@ -153,16 +153,11 @@
       font-weight: 600;
     }
 
-    /* ── Track record box ──────────────────────────────────────── */
+    /* ── Agenda ────────────────────────────────────────────────── */
 
-    .track-record {
-      border: 1px solid #ebff40;
-      border-left: 3px solid #ebff40;
-      background: rgba(235, 255, 64, 0.04);
-      padding: 28px 32px;
-      max-width: 560px;
+    .agenda {
+      max-width: 520px;
       margin-bottom: 56px;
-      border-radius: 2px;
     }
 
     .section-label {
@@ -171,40 +166,40 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: #ebff40;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
-    .stats {
+    .agenda-items {
       display: flex;
-      gap: 32px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
+      flex-direction: column;
+      gap: 0;
     }
 
-    .stat-value {
-      font-family: 'Power Grotesk', 'Inter', sans-serif;
-      font-size: clamp(28px, 3.2vw, 36px);
-      font-weight: 700;
-      color: #fff;
-      line-height: 1;
-      margin-bottom: 4px;
+    .agenda-item {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 16px;
+      padding: 10px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      align-items: baseline;
     }
 
-    .stat-label {
+    .agenda-item:last-child {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .agenda-time {
       font-size: 12px;
-      color: rgba(255, 255, 255, 0.55);
-      font-weight: 500;
-    }
-
-    .track-text {
-      font-size: 13px;
-      line-height: 1.55;
-      color: rgba(255, 255, 255, 0.65);
-    }
-
-    .track-text strong {
-      color: #fff;
       font-weight: 600;
+      color: #ebff40;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .agenda-desc {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.4;
     }
 
     /* ── Speakers ──────────────────────────────────────────────── */
@@ -368,24 +363,20 @@
           Join us for a half-day session dedicated to exploring grant funding opportunities for defense tech companies. Topics will include the <strong>European Defence Industry Programme (EDIP)</strong> &mdash; a &euro;1.5 billion initiative offering grants of up to &euro;30M to scale production, with a dedicated Ukraine Support Instrument for Ukrainian companies &mdash; as well as <strong>European Defence Fund (EDF)</strong> grants and other funding mechanisms.
         </p>
 
-        <!-- Track record -->
-        <div class="track-record">
-          <p class="section-label">Civitta&rsquo;s track record in defence funding</p>
-          <div class="stats">
-            <div>
-              <p class="stat-value">&euro;2.4M</p>
-              <p class="stat-label">EDF grant secured (MICROPOL)</p>
-            </div>
-            <div>
-              <p class="stat-value">&euro;3.3M</p>
-              <p class="stat-label">Total project budget mobilised</p>
-            </div>
+        <!-- Agenda -->
+        <div class="agenda">
+          <p class="section-label">Agenda</p>
+          <div class="agenda-items">
+            <div class="agenda-item"><span class="agenda-time">9:30</span><span class="agenda-desc">Registration &amp; coffee</span></div>
+            <div class="agenda-item"><span class="agenda-time">10:00</span><span class="agenda-desc">Overview of funding opportunities for defence companies</span></div>
+            <div class="agenda-item"><span class="agenda-time">10:20</span><span class="agenda-desc">EDIP deep dive</span></div>
+            <div class="agenda-item"><span class="agenda-time">11:00</span><span class="agenda-desc">ERA USI calls</span></div>
+            <div class="agenda-item"><span class="agenda-time">11:30</span><span class="agenda-desc">EDF</span></div>
+            <div class="agenda-item"><span class="agenda-time">11:45</span><span class="agenda-desc">Other opportunities (national grants, etc.)</span></div>
+            <div class="agenda-item"><span class="agenda-time">12:00</span><span class="agenda-desc">Bridge to NATO pitch and Q&amp;A</span></div>
+            <div class="agenda-item"><span class="agenda-time">12:30</span><span class="agenda-desc">General Q&amp;A</span></div>
+            <div class="agenda-item"><span class="agenda-time">13:00</span><span class="agenda-desc">Close</span></div>
           </div>
-          <p class="track-text">
-            As an active <strong>European Defence Fund</strong> winner and consortium partner,
-            Civitta has helped Ukrainian and European defence-tech companies unlock non-dilutive
-            capital and connect with NATO-aligned procurement pathways.
-          </p>
         </div>
 
         <!-- Featured speakers -->
