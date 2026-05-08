@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Civitta — DefenceTech Захід з Фінансування · Київ 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Power Grotesk';
+      src: url('fonts/PowerGrotesk-Regular.otf') format('opentype');
+      font-weight: 400 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      background: #1d1d1d;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+    }
+
+    .page {
+      position: relative;
+      background: #1d1d1d;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .bg-lines {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: auto;
+      pointer-events: none;
+      opacity: 0.99;
+      filter: invert(1);
+      mix-blend-mode: screen;
+      user-select: none;
+    }
+
+    .bg-gradient {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(105deg, #1d1d1d 50%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      padding: clamp(48px, 8vw, 96px) clamp(32px, 6vw, 80px);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: space-between;
+    }
+
+    /* ── Header ────────────────────────────────────────────────── */
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .logo {
+      display: block;
+      height: 56px;
+      width: auto;
+    }
+
+    .header-divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      flex-shrink: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1.5px solid #ebff40;
+      color: #ebff40;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+    }
+
+    /* ── Main ──────────────────────────────────────────────────── */
+
+    .main { flex: 1; }
+
+    .event-label {
+      font-size: clamp(13px, 1.5vw, 16px);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .headline {
+      font-family: 'Power Grotesk', 'Space Grotesk', Helvetica, sans-serif;
+      font-size: clamp(36px, 3.96vw, 64.8px);
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 48px;
+      max-width: 680px;
+      text-wrap: pretty;
+    }
+
+    .headline em {
+      color: #ebff40;
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .accent-line {
+      width: 48px;
+      height: 2px;
+      background: #ebff40;
+      margin-bottom: 40px;
+    }
+
+    .body-copy {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: clamp(15px, 1.6vw, 18px);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 56px;
+      font-weight: 400;
+    }
+
+    .body-copy strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* ── Agenda ────────────────────────────────────────────────── */
+
+    .agenda {
+      max-width: 520px;
+      margin-bottom: 56px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #ebff40;
+      margin-bottom: 20px;
+    }
+
+    .agenda-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .agenda-item {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 16px;
+      padding: 10px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      align-items: baseline;
+    }
+
+    .agenda-item:last-child {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .agenda-time {
+      font-size: 12px;
+      font-weight: 600;
+      color: #ebff40;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .agenda-desc {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.4;
+    }
+
+    /* ── Speakers ──────────────────────────────────────────────── */
+
+    .speakers {
+      margin-bottom: 56px;
+      max-width: 640px;
+    }
+
+    .speakers .section-label { margin-bottom: 24px; }
+
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 20px;
+    }
+
+    .speaker {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .speaker-photo {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ebff40;
+    }
+
+    .speaker-name {
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1.25;
+      margin-bottom: 2px;
+    }
+
+    .speaker-role {
+      color: #ebff40;
+      font-weight: 500;
+      font-size: 11.5px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .speaker-bio {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    /* ── Event details ─────────────────────────────────────────── */
+
+    .event-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 24px 40px;
+      max-width: 560px;
+      margin-bottom: 64px;
+    }
+
+    .detail-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #ebff40;
+      margin-bottom: 6px;
+    }
+
+    .detail-value {
+      font-size: clamp(14px, 1.4vw, 16px);
+      color: #fff;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* ── Subtle links (speaker names, location) ────────────────── */
+
+    .subtle-link {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    /* ── CTA ───────────────────────────────────────────────────── */
+
+    .cta {
+      display: inline-block;
+      background: #ebff40;
+      color: #1d1d1d;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 40px;
+      border-radius: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .cta:hover { opacity: 0.85; }
+
+    /* ── Footer ────────────────────────────────────────────────── */
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 80px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-contact {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.35);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .footer-contact a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <img class="bg-lines" src="uploads/Civitta graphic elements PNG-01.png" aria-hidden="true" alt="">
+    <div class="bg-gradient"></div>
+
+    <div class="content">
+
+      <!-- Header: logo + tag -->
+      <div class="header">
+        <a href="https://civitta.com/" target="_blank" rel="noopener noreferrer">
+          <img class="logo" src="uploads/pasted-1777972902090-0.png" alt="Civitta Defence">
+        </a>
+        <div class="header-divider"></div>
+        <span class="tag">DefenceTech Фінансування · Київ 2026</span>
+      </div>
+
+      <div class="main">
+
+        <p class="event-label">Civitta Defence запрошує вас на</p>
+
+        <h1 class="headline">
+          Українські DefenceTech: час <em>отримати фінансування</em><br>
+          що рухає вашу місію.
+        </h1>
+
+        <div class="accent-line"></div>
+
+        <p class="body-copy">
+          Запрошуємо вас на напівденну сесію, присвячену вивченню грантових можливостей для компаній у сфері оборонних технологій. Серед тем: <strong>Програма Європейської оборонної промисловості (EDIP)</strong> &mdash; ініціатива на &euro;1,5 млрд, що пропонує гранти до &euro;30 млн для масштабування виробництва, зі спеціальним Інструментом підтримки України &mdash; а також гранти <strong>Європейського оборонного фонду (EDF)</strong> та інші механізми фінансування.
+        </p>
+
+        <!-- Agenda -->
+        <div class="agenda">
+          <p class="section-label">Програма</p>
+          <div class="agenda-items">
+            <div class="agenda-item"><span class="agenda-time">9:30</span><span class="agenda-desc">Реєстрація та кава</span></div>
+            <div class="agenda-item"><span class="agenda-time">10:00</span><span class="agenda-desc">Огляд можливостей фінансування для оборонних компаній</span></div>
+            <div class="agenda-item"><span class="agenda-time">10:20</span><span class="agenda-desc">Детальний розбір EDIP</span></div>
+            <div class="agenda-item"><span class="agenda-time">11:00</span><span class="agenda-desc">Виклики ERA USI</span></div>
+            <div class="agenda-item"><span class="agenda-time">11:30</span><span class="agenda-desc">EDF</span></div>
+            <div class="agenda-item"><span class="agenda-time">11:45</span><span class="agenda-desc">Інші можливості (національні гранти тощо)</span></div>
+            <div class="agenda-item"><span class="agenda-time">12:00</span><span class="agenda-desc">Bridge to NATO — презентація та Q&amp;A</span></div>
+            <div class="agenda-item"><span class="agenda-time">12:30</span><span class="agenda-desc">Загальне Q&amp;A</span></div>
+            <div class="agenda-item"><span class="agenda-time">13:00</span><span class="agenda-desc">Завершення</span></div>
+          </div>
+        </div>
+
+        <!-- Featured speakers -->
+        <div class="speakers">
+          <p class="section-label">Запрошені спікери</p>
+          <div class="speakers-grid">
+
+            <div class="speaker">
+              <img class="speaker-photo" src="speakers/speaker3.png" alt="Iurii-Volodymyr Blavt">
+              <div>
+                <p class="speaker-name"><a class="subtle-link" href="https://civitta.com/team/iurii-volodymyr-blavt/" target="_blank" rel="noopener noreferrer">Iurii-Volodymyr Blavt</a></p>
+                <p class="speaker-role">Партнер</p>
+                <p class="speaker-bio">Експерт із залучення фінансування ЄС для інноваційних компаній</p>
+              </div>
+            </div>
+
+            <div class="speaker">
+              <img class="speaker-photo" src="speakers/speaker1.png" alt="Kyrylo Kryvolap">
+              <div>
+                <p class="speaker-name"><a class="subtle-link" href="https://civitta.com/team/kirill-krivolap/" target="_blank" rel="noopener noreferrer">Kyrylo Kryvolap</a></p>
+                <p class="speaker-role">Керуючий партнер</p>
+                <p class="speaker-bio">20+ років керівництва 50+ великими проєктами у сфері політики та бізнесу, включно з оборонними</p>
+              </div>
+            </div>
+
+            <div class="speaker">
+              <img class="speaker-photo" src="speakers/speaker2.png" alt="Greg Fishman">
+              <div>
+                <p class="speaker-name"><a class="subtle-link" href="https://civitta.com/team/greg-fishman/" target="_blank" rel="noopener noreferrer">Greg Fishman</a></p>
+                <p class="speaker-role">Старший радник</p>
+                <p class="speaker-bio">Лідер у приватному секторі оборони та відновлення, партнерство з провідними компаніями Європи та США</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Event details -->
+        <div class="event-details">
+          <div>
+            <p class="detail-label">Дата</p>
+            <p class="detail-value">18 травня 2026</p>
+          </div>
+          <div>
+            <p class="detail-label">Час</p>
+            <p class="detail-value">10:00 &ndash; 13:00</p>
+          </div>
+          <div>
+            <p class="detail-label">Місце</p>
+            <p class="detail-value">Місце буде повідомлено після реєстрації</p>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <a class="cta" href="https://forms.gle/h2uu4uT94Cr2SuNB6" target="_blank" rel="noopener noreferrer">Зареєструватись &rarr;</a>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p class="footer-contact">
+          Контакт: <a href="mailto:maria.andrukhiv@civitta.com">maria.andrukhiv@civitta.com</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
