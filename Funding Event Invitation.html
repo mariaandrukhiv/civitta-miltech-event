@@ -66,6 +66,15 @@
       justify-content: space-between;
     }
 
+    .ucdi-logo {
+      position: absolute;
+      top: clamp(32px, 5vw, 56px);
+      right: clamp(32px, 5vw, 56px);
+      height: 40px;
+      width: auto;
+      z-index: 3;
+    }
+
     /* ── Header ────────────────────────────────────────────────── */
 
     .header {
@@ -339,13 +348,14 @@
 
     <div class="content">
 
+      <!-- UCDI logo top right -->
+      <img class="ucdi-logo" src="ucdi-logo-en.png" alt="UCDI">
+
       <!-- Header: logo + tag -->
       <div class="header">
         <a href="https://civitta.com/" target="_blank" rel="noopener noreferrer">
           <img class="logo" src="uploads/pasted-1777972902090-0.png" alt="Civitta Defence">
         </a>
-        <div class="header-divider"></div>
-        <img class="logo" src="ucdi-logo-en.png" alt="UCDI">
         <div class="header-divider"></div>
         <span class="tag">DefenceTech Funding · Kyiv 2026</span>
       </div>
